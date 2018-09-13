@@ -18,13 +18,16 @@ public class ChessboardView {
         int size = chessboard.length;
         for (int row = 0; row < size; row++) {
             for (int col = 0; col < size; col++) {
+                Rectangle currentField = chessboard[row][col];
                 Color color;
                 if ((row + col) % 2 == 0) color = nonPlayable;
-                else color = playable;
-                chessboard[row][col].setFill(color);
-                chessboardView.add(chessboard[row][col], col, row);
-                chessboard[row][col].widthProperty().bind(chessboardView.widthProperty().divide(size));
-                chessboard[row][col].heightProperty().bind(chessboardView.heightProperty().divide(size));
+                else {
+                    color = playable;
+                }
+                currentField.setFill(color);
+                chessboardView.add(currentField, col, row);
+                currentField.widthProperty().bind(chessboardView.widthProperty().divide(size));
+                currentField.heightProperty().bind(chessboardView.heightProperty().divide(size));
             }
         }
         return chessboardView;
