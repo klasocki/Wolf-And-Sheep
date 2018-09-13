@@ -6,10 +6,10 @@ TODO Make it playable
 TODO Refactor
 TODO Use images of pawnes
 TODO Add artifitial intelligence
-TODO Make AI be intelligent. Use machine learning
+TODO Make AI intelligent. Use machine learning
  */
 
-package sample;
+package Board;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -44,8 +44,8 @@ public class Main extends Application {
                 else color = Color.web("#383838");
                 square.setFill(color);
                 chessboard.add(square, col, row);
-                square.widthProperty().bind(chessboard.widthProperty().divide(size));
-                square.heightProperty().bind(chessboard.heightProperty().divide(size));
+                square.widthProperty().bind(chessboard.widthProperty().divide(size).subtract(10));
+                square.heightProperty().bind(chessboard.heightProperty().divide(size).subtract(10));
             }
         }
 
