@@ -21,12 +21,12 @@ public class Chessboard {
     private static final Chessboard instance = new Chessboard();
     private static Rectangle[][] chessboard;
     private static boolean WolfsTurn = true; //Wolf starts the game
-    
+
     public static Chessboard getInstance() {
         return instance;
     }
 
-    public static boolean WolfsTurn() {
+    public static boolean wolfsTurn() {
         return WolfsTurn;
     }
 
