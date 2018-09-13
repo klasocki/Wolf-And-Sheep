@@ -30,7 +30,8 @@ public class Main extends Application {
         window.setTitle("Wolf and Sheep - Chessboard game");
         //window.setOnCloseRequest(event -> );
         Chessboard chessboard = Chessboard.getInstance();
-        GridPane boardView = chessboard.draw(Color.BISQUE, Color.rgb(38, 38, 38));
+        ChessboardView chessboardView = ChessboardView.getInstance();
+        GridPane boardView = chessboardView.draw(Color.BISQUE, Color.rgb(38, 38, 38));
         boardView.prefWidthProperty().bind(window.widthProperty().subtract(200));
         HBox layout = new HBox();
         layout.setPadding(new Insets(10, 10, 10, 10));

@@ -1,17 +1,11 @@
+//A pawn has a position.  A chessboard has a field
+
 package Pawnes;
 
 public class Position {
     private int row;
     private int col;
-    private boolean taken;
 
-    public boolean isTaken() {
-        return taken;
-    }
-
-    public void setTaken(boolean taken) {
-        this.taken = taken;
-    }
 
     public Position(int row, int col) {
         this.row = row;
