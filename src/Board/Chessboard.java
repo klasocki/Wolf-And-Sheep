@@ -1,12 +1,16 @@
 //This is the Model for the Chessboard. Using Singleton pattern
-
 package Board;
 
+import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
 
 public class Chessboard {
     final int size = 8;
+    private static Rectangle[][] chessboard;
+    private static final Chessboard instance = new Chessboard();
+    private static boolean WolfsTurn = true; //Wolf starts the game
 
     private Chessboard() {
         //Filling the chessboard with Rectangles
@@ -18,9 +22,10 @@ public class Chessboard {
         }
     }
 
-    private static final Chessboard instance = new Chessboard();
-    private static Rectangle[][] chessboard;
-    private static boolean WolfsTurn = true; //Wolf starts the game
+    public static GridPane draw(Color nonPlayable, Color playable) {
+        ChessboardView view = ChessboardView.getInstance(chessboard);
+        return view.draw(nonPlayable, playable);
+    }
 
     public static Chessboard getInstance() {
         return instance;

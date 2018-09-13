@@ -16,40 +16,29 @@ import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import javafx.scene.layout.*;
-import javafx.scene.shape.*;
 
 public class Main extends Application {
-
-    private GridPane chessboard = new GridPane();
-    final int size = 8;
-
 
     @Override
     public void start(Stage window) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
-
         window.setTitle("Wolf and Sheep - Chessboard game");
         //window.setOnCloseRequest(event -> );
+        Chessboard chessboard = Chessboard.getInstance();
+        GridPane boardView = chessboard.draw(Color.BISQUE, Color.rgb(38, 38, 38));
+        boardView.prefWidthProperty().bind(window.widthProperty().subtract(200));
+        HBox layout = new HBox();
+        layout.setPadding(new Insets(10, 10, 10, 10));
+        VBox rightMenu = new VBox();
+        layout.getChildren().addAll(boardView, rightMenu);
+        window.setScene(new Scene(layout, 820, 620));
+        window.setResizable(false);
 
-        chessboard.setPadding(new Insets(10,10,10,10));
-
-        for (int row = 0; row < size; row++) {
-            for (int col = 0; col < size; col++) {
-                Rectangle square = new Rectangle();
-                Color color;
-                if ((row + col) % 2 == 0) color = Color.BISQUE;
-                else color = Color.web("#383838");
-                square.setFill(color);
-                chessboard.add(square, col, row);
-                square.widthProperty().bind(chessboard.widthProperty().divide(size).subtract(10));
-                square.heightProperty().bind(chessboard.heightProperty().divide(size).subtract(10));
-            }
-        }
-
-        window.setScene(new Scene(chessboard, 800, 600));
         window.show();
     }
 
