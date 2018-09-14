@@ -13,8 +13,16 @@ public class Chessboard {
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
                 chessboard[i][j] = new Field(i, j);
+                if ((i + j) % 2 == 1) {
+                    addEventhandlers(chessboard[i][j]);
+                }
             }
         }
+    }
+
+    private void addEventhandlers(Field field) {
+        field.square.setOnMouseEntered(event -> Controller.mouseEntered(field.square));
+        field.square.setOnMouseExited(event -> Controller.mouseExited(field.square));
     }
 
 
