@@ -1,0 +1,1 @@
+Field might inherit after Rectangle to simplify usage (following Liskov substitute principle)

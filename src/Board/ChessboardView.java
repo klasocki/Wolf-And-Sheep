@@ -32,7 +32,6 @@ public class ChessboardView {
     }
 
     public static ChessboardView getInstance() {
-        //You cannot modify the chessboard Model - it is "final", can only be set at the first time
         if (instance == null) {
             instance = new ChessboardView();
         }

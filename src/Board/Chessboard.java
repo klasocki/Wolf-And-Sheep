@@ -23,8 +23,22 @@ public class Chessboard {
     private void addEventhandlers(Field field) {
         field.square.setOnMouseEntered(event -> Controller.mouseEntered(field.square));
         field.square.setOnMouseExited(event -> Controller.mouseExited(field.square));
+        field.square.setOnMouseClicked(event -> Controller.mouseClicked(field));
     }
 
+    public static boolean isTakenField(int row, int col) {
+        return chessboard[row][col].isTaken();
+    }
+
+    public static boolean isValidMove(int row, int col) {
+        return ((0 <= col) && (col < Chessboard.size) &&
+                (0 <= row) && (row < Chessboard.size) &&
+                !(chessboard[row][col].isTaken()));
+    }
+
+    public static Field getField(int row, int col) {
+        return chessboard[row][col];
+    }
 
     public static Chessboard getInstance() {
         return instance;

@@ -17,14 +17,6 @@ public class Field {
         square = new Rectangle();
     }
 
-    public static boolean isValidMove(Field field) {
-        return (!field.isTaken()) &&
-                (0 <= field.getCol()) && (field.getCol() < Chessboard.size) &&
-                (0 <= field.getRow()) && (field.getRow() < Chessboard.size);
-
-
-    }
-
     public boolean isTaken() {
         return taken;
     }
@@ -34,7 +26,6 @@ public class Field {
     }
 
     public int getRow() {
-
         return row;
     }
 
