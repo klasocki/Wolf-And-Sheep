@@ -23,7 +23,7 @@ public class Controller {
 
     public static void mouseClicked(Field fieldClicked) {
         if (!fieldClicked.isTaken() && Chessboard.getFieldSelected() != null) {
-            //If field clicked is a possible move it does it, else it unselects current filed
+            //If field clicked is a possible move, it does it, else it unselects current filed
             moveSelectedPiece(fieldClicked);
         } else if (fieldClicked.isTaken()) {
             //So, every time you click on a taken field, you select piece you want to move

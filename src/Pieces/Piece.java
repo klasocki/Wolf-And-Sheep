@@ -12,6 +12,10 @@ public abstract class Piece {
     public Movable movingWay;
     private Circle viewRepresentation;
 
+    public boolean isPlaced() {
+        return !(field == null);
+    }
+
     public void move(Field field) {
         ArrayList<Field> possibleMoves = movingWay.getPossibleMoves(this.field);
         //checking if requested move is valid for a certain piece
@@ -33,9 +37,9 @@ public abstract class Piece {
     }
 
     public void placePiece(int row, int col) {
+        ChessboardView.placePiece(this, Chessboard.getField(row, col));
         field = Chessboard.getField(row, col);
         field.setPiece(this);
         field.setTaken(true);
-        ChessboardView.placePiece(this, field);
     }
 }

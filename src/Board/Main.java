@@ -12,6 +12,7 @@ TODO Make AI intelligent. Use machine learning
 package Board;
 
 import Pieces.Piece;
+import Pieces.Sheep;
 import Pieces.Wolf;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -39,8 +40,10 @@ public class Main extends Application {
         layout.getChildren().addAll(boardView, rightMenu);
         window.setScene(new Scene(layout, 820, 620));
         window.setResizable(false);
-        Piece piece = new Wolf();
-        piece.placePiece(0, 1);
+        Piece wolf = new Wolf();
+        wolf.placePiece(0, 1);
+        Piece sheepOne = new Sheep(true);
+        sheepOne.placePiece(6, 1);
 
         window.show();
     }

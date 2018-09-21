@@ -10,9 +10,10 @@ import javafx.scene.shape.Rectangle;
 
 public class ChessboardView {
     private static GridPane chessboardView;
-    static Color nonPlayable = Color.BISQUE;
-    static Color playable = Color.valueOf("#383838");
-    private static Color wolfColor = Color.GREENYELLOW;
+    static final Color nonPlayable = Color.BISQUE;
+    static final Color playable = Color.valueOf("#383838");
+    static final Color wolfColor = Color.GREENYELLOW;
+    static final Color sheepColor = Color.LIGHTGREY;
 
     public static GridPane draw() {
         int size = Chessboard.chessboard.length;
@@ -34,12 +35,15 @@ public class ChessboardView {
     }
 
     public static void placePiece(Piece piece, Field field) {
+        if (piece.isPlaced()) {
+            movePiece(piece.getViewRepresentation(), field);
+            return;
+        }
         int size = Chessboard.chessboard.length;
         Circle circle = new Circle();
-        if (piece.getClass() == Wolf.class) circle.setFill(wolfColor);
+        circle.setFill((piece.getClass() == Wolf.class) ? wolfColor : sheepColor);
         circle.radiusProperty().bind(chessboardView.widthProperty().divide(size * 2 + 1));
         piece.setViewRepresentation(circle);
-
         chessboardView.add(circle, field.getCol(), field.getRow());
     }
 
