@@ -43,7 +43,18 @@ public class Main extends Application {
         Piece wolf = new Wolf();
         wolf.placePiece(0, 1);
         Piece sheepOne = new Sheep(true);
-        sheepOne.placePiece(6, 1);
+        Piece sheepTwo = new Sheep(true);
+        Piece sheepThree = new Sheep(true);
+        Piece sheepFour = new Sheep(true);
+        sheepOne.placePiece(7, 0);
+        sheepTwo.placePiece(7, 2);
+        sheepThree.placePiece(7, 4);
+        sheepFour.placePiece(7, 6);
+        Controller.addEventHandlers(sheepOne);
+        Controller.addEventHandlers(sheepTwo);
+        Controller.addEventHandlers(sheepThree);
+        Controller.addEventHandlers(sheepFour);
+        Controller.addEventHandlers(wolf);
 
         window.show();
     }

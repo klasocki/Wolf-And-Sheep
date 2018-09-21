@@ -24,17 +24,12 @@ public class Chessboard {
             for (int j = 0; j < size; j++) {
                 chessboard[i][j] = new Field(i, j);
                 if ((i + j) % 2 == 1) {
-                    addEventhandlers(chessboard[i][j]);
+                    Controller.addEventHandlers(chessboard[i][j]);
                 }
             }
         }
     }
 
-    private void addEventhandlers(Field field) {
-        field.viewRepresentation.setOnMouseEntered(event -> Controller.mouseEntered(field.viewRepresentation));
-        field.viewRepresentation.setOnMouseExited(event -> Controller.mouseExited(field.viewRepresentation));
-        field.viewRepresentation.setOnMouseClicked(event -> Controller.mouseClicked(field));
-    }
 
     public static boolean isTakenField(int row, int col) {
         return chessboard[row][col].isTaken();

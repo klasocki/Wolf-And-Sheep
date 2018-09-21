@@ -50,6 +50,11 @@ public class ChessboardView {
     public static void movePiece(Circle piece, Field field) {
         chessboardView.getChildren().remove(piece);
         chessboardView.add(piece, field.getCol(), field.getRow());
+        /* without this color setting, mouse leaves the circle after the move
+        without entering it, resulting in
+        the circle getting darker and darker
+        */
+        piece.setFill(Color.valueOf(piece.getFill().toString()).brighter());
     }
 
 

@@ -8,12 +8,17 @@ import javafx.scene.shape.Circle;
 import java.util.ArrayList;
 
 public abstract class Piece {
+
     private Field field;
     public Movable movingWay;
     private Circle viewRepresentation;
 
     public boolean isPlaced() {
         return !(field == null);
+    }
+
+    public Field getField() {
+        return field;
     }
 
     public void move(Field field) {
