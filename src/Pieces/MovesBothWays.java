@@ -1,4 +1,4 @@
-package Pawnes;
+package Pieces;
 
 import Board.Field;
 

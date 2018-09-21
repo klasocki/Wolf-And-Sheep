@@ -6,6 +6,16 @@ public class Chessboard {
     protected static Field[][] chessboard;
     private static final Chessboard instance = new Chessboard();
     private static boolean WolfsTurn = true; //Wolf starts the game
+    private static Field fieldSelected = null;
+
+    public static Field getFieldSelected() {
+        return fieldSelected;
+    }
+
+    public static void setFieldSelected(Field fieldSelected) {
+        Chessboard.fieldSelected = fieldSelected;
+    }
+
 
     private Chessboard() {
         //Filling the chessboard with Rectangles
@@ -21,9 +31,9 @@ public class Chessboard {
     }
 
     private void addEventhandlers(Field field) {
-        field.square.setOnMouseEntered(event -> Controller.mouseEntered(field.square));
-        field.square.setOnMouseExited(event -> Controller.mouseExited(field.square));
-        field.square.setOnMouseClicked(event -> Controller.mouseClicked(field));
+        field.viewRepresentation.setOnMouseEntered(event -> Controller.mouseEntered(field.viewRepresentation));
+        field.viewRepresentation.setOnMouseExited(event -> Controller.mouseExited(field.viewRepresentation));
+        field.viewRepresentation.setOnMouseClicked(event -> Controller.mouseClicked(field));
     }
 
     public static boolean isTakenField(int row, int col) {

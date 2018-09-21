@@ -3,18 +3,32 @@
 
 package Board;
 
+import Pieces.Piece;
 import javafx.scene.shape.Rectangle;
 
 public class Field {
-    protected Rectangle square;
+    protected Rectangle viewRepresentation;
     private int row;
     private int col;
     private boolean taken = false;
+    Piece piece;
+
+    public Rectangle getViewRepresentation() {
+        return viewRepresentation;
+    }
+
+    public Piece getPiece() {
+        return piece;
+    }
+
+    public void setPiece(Piece piece) {
+        this.piece = piece;
+    }
 
     public Field(int row, int col) {
         this.row = row;
         this.col = col;
-        square = new Rectangle();
+        viewRepresentation = new Rectangle();
     }
 
     public boolean isTaken() {

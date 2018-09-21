@@ -11,6 +11,8 @@ TODO Make AI intelligent. Use machine learning
 
 package Board;
 
+import Pieces.Piece;
+import Pieces.Wolf;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
@@ -19,7 +21,6 @@ import javafx.scene.Scene;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 public class Main extends Application {
@@ -30,8 +31,7 @@ public class Main extends Application {
         window.setTitle("Wolf and Sheep - Chessboard game");
         //window.setOnCloseRequest(event -> );
         Chessboard chessboard = Chessboard.getInstance();
-        ChessboardView chessboardView = ChessboardView.getInstance();
-        GridPane boardView = chessboardView.draw(Color.BISQUE, Color.rgb(38, 38, 38));
+        GridPane boardView = ChessboardView.draw();
         boardView.prefWidthProperty().bind(window.widthProperty().subtract(200));
         HBox layout = new HBox();
         layout.setPadding(new Insets(10, 10, 10, 10));
@@ -39,6 +39,8 @@ public class Main extends Application {
         layout.getChildren().addAll(boardView, rightMenu);
         window.setScene(new Scene(layout, 820, 620));
         window.setResizable(false);
+        Piece piece = new Wolf();
+        piece.placePiece(0, 1);
 
         window.show();
     }
