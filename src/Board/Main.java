@@ -2,9 +2,14 @@
 This game is made by Karol Lasocki, 2018. All rights reserved
 It's a computer version of the "Wolf and Sheep" chessboard game, featuring a simple GUI
 I create it for learning
-TODO Make it playable
-TODO Refactor
-TODO Use images of pawnes
+DONE Make it playable
+TODO Make the game handle tours
+TODO Add winning messages
+TODO Refactor!!!!!
+TODO Use factory design pattern to create Pieces
+TODO Add undo and other control buttons
+TODO Use images of pieces
+TODO make an android distribution
 TODO Add artifitial intelligence
 TODO Make AI intelligent. Use machine learning
  */
