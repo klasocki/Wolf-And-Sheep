@@ -3,9 +3,9 @@ This game is made by Karol Lasocki, 2018. All rights reserved
 It's a computer version of the "Wolf and Sheep" chessboard game, featuring a simple GUI
 I create it for learning
 DONE Make it playable
+TODO Refactor!!!!!
 TODO Make the game handle turns
 TODO Add winning messages
-TODO Refactor!!!!!
 TODO Use factory design pattern to create Pieces
 TODO Add undo and other control buttons
 TODO Use images of pieces

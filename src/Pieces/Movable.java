@@ -11,18 +11,17 @@ public interface Movable {
     // public void move(Position oldPosition, Position newPosition) ;
 
 
-    final int[] colMmovesPossible = {-1, 1};
+    int[] colMovesPossible = {-1, 1};
 
-    final int upRowMove = -1;
-    final int downRowMove = 1;
-    final int chessboardSize = 8;
+    int upRowMove = -1;
+    int downRowMove = 1;
 
     class PossibleMovesFiller {
         static ArrayList<Field> fillPossibleMoves(Field position, int rowMove) {
             ArrayList<Field> result = new ArrayList<>();
             for (int i = 0; i < 2; i++) {
                 int row = position.getRow() + rowMove;
-                int col = position.getCol() + colMmovesPossible[i];
+                int col = position.getCol() + colMovesPossible[i];
                 if (Chessboard.isValidMove(row, col))
                     result.add(Chessboard.getField(row, col));
             }
