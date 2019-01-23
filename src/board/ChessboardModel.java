@@ -15,7 +15,7 @@ public class ChessboardModel {
     }
 
 
-    ChessboardModel() {
+    public ChessboardModel() {
         //Filling the chessboard with Rectangles
         chessboard = new FieldModel[size][size];
         for (int i = 0; i < size; i++) {

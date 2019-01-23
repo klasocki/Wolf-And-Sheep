@@ -16,15 +16,11 @@ public class FieldModel {
         this.col = col;
     }
 
-    public List<FieldModel> getPosiibleMoves() {
+    public List<FieldModel> getPossibleMoves() {
         if (this.pieceModel == null) {
             return new ArrayList<>();
         }
         return this.pieceModel.getPossibleMoves();
-    }
-
-    public PieceModel getPieceModel() {
-        return pieceModel;
     }
 
     public void setPieceModel(PieceModel pieceModel) {
@@ -39,15 +35,8 @@ public class FieldModel {
         return row;
     }
 
-    public void setRow(int row) {
-        this.row = row;
-    }
-
     public int getCol() {
         return col;
     }
 
-    public void setCol(int col) {
-        this.col = col;
-    }
 }

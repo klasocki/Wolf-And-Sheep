@@ -5,7 +5,7 @@ import pieces.PieceView;
 
 import java.util.List;
 
-//TODO each field should have a controller?
+//TODO too much logic inside controller, move
 
 public class FieldController {
     private ChessboardModel chessboardModel;
@@ -36,7 +36,7 @@ public class FieldController {
     private void unselectField() {
         FieldModel fieldModel = chessboardModel.getFieldModelSelected();
         if (fieldModel == null) return;
-        List<FieldModel> moves = fieldModel.getPosiibleMoves();
+        List<FieldModel> moves = fieldModel.getPossibleMoves();
         for (FieldModel f : moves) {
             chessboardView.getFieldView(f).setFill(ChessboardView.playable);
         }
@@ -47,7 +47,7 @@ public class FieldController {
     private void selectField(FieldView fieldView) {
         // TODO Model should calculate the fields to prompt
         unselectField();
-        List<FieldModel> moves = fieldView.getFieldModel().getPosiibleMoves();
+        List<FieldModel> moves = fieldView.getFieldModel().getPossibleMoves();
         if (moves.size() == 0) return;
         for (FieldModel f : moves) {
             chessboardView.getFieldView(f).setFill(ChessboardView.prompt);
@@ -59,7 +59,7 @@ public class FieldController {
     private void moveSelectedPiece(FieldModel destination) {
         FieldModel fieldSelected = chessboardModel.getFieldModelSelected();
         PieceView pieceViewToMove = chessboardView.getFieldView(fieldSelected).getPieceView();
-        List<FieldModel> moves = fieldSelected.getPosiibleMoves();
+        List<FieldModel> moves = fieldSelected.getPossibleMoves();
         unselectField();
         if (moves.contains(destination)) {
             pieceController.movePiece(pieceViewToMove, destination);
