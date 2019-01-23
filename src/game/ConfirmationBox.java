@@ -1,5 +1,6 @@
 package game;
 
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -24,7 +25,9 @@ public class ConfirmationBox {
 
 
         Button yesButton = new Button("Yes");
+        yesButton.setPrefSize(70,30);
         Button noButton = new Button("No");
+        noButton.setPrefSize(70,30);
         yesButton.setOnAction(event -> {
             answer = true;
             window.close();
@@ -36,6 +39,7 @@ public class ConfirmationBox {
         });
 
         VBox layout = new VBox(10);
+        layout.setPadding(new Insets(0,10,0,10));
         HBox buttons = new HBox(10);
         buttons.getChildren().addAll(yesButton, noButton);
         buttons.setAlignment(Pos.CENTER);

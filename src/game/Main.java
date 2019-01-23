@@ -19,6 +19,8 @@ package game;
 import board.ChessboardModel;
 import board.ChessboardView;
 import javafx.application.Platform;
+import javafx.geometry.Pos;
+import javafx.scene.control.Button;
 import pieces.*;
 import javafx.application.Application;
 import javafx.geometry.Insets;
@@ -31,15 +33,28 @@ import javafx.stage.Stage;
 public class Main extends Application {
 
     @Override
-    public void start(Stage window) throws Exception{
+    public void start(Stage window) {
         window.setTitle("Wolf and Sheep - Chessboard game");
         window.setOnCloseRequest(event -> {
             event.consume();
-            closeWindow(window);
+            closeWindows();
         });
         HBox layout = new HBox();
-        layout.setPadding(new Insets(10, 10, 10, 10));
-        VBox rightMenu = new VBox();
+        layout.setPadding(new Insets(10, 0, 10, 10));
+        VBox rightMenu = new VBox(30);
+        Button undoButton = new Button("Undo");
+        Button restartButton = new Button("Restart");
+        Button quitButton = new Button("Back to menu");
+        quitButton.setMinHeight(50);
+        undoButton.minHeightProperty().bind(quitButton.minHeightProperty());
+        undoButton.prefWidthProperty().bind(quitButton.widthProperty());
+        restartButton.minHeightProperty().bind(quitButton.minHeightProperty());
+        restartButton.prefWidthProperty().bind(quitButton.widthProperty());
+
+        rightMenu.setPadding(new Insets(20,0,20,20));
+        rightMenu.setAlignment(Pos.BASELINE_RIGHT);
+        rightMenu.getChildren().addAll(undoButton, restartButton, quitButton);
+
         window.setScene(new Scene(layout, 820, 620));
         window.setResizable(false);
         GridPane boardView = getChessboardGrid(window);
@@ -58,7 +73,7 @@ public class Main extends Application {
         return boardView;
     }
 
-    private void closeWindow(Stage window) {
+    private void closeWindows() {
         boolean answer = ConfirmationBox.display("Exiting Wolf and Sheep",
                 "Are you sure you want to quit? Your game progress will be lost");
         if (answer) {

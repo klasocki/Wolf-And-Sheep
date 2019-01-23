@@ -24,6 +24,7 @@ class FieldModelTest {
     void getPossibleMoves() {
         assertEquals(testFieldTwo.getPossibleMoves(), new ArrayList<FieldModel>());
         ChessboardModel chessboardModel = new ChessboardModel();
+        chessboardModel.changeTurn();
         new SheepModel(chessboardModel, true).place(testFieldOne);
         ArrayList<FieldModel> possibleTestMoves = new ArrayList<>();
         possibleTestMoves.add(chessboardModel.getField(2, 2));

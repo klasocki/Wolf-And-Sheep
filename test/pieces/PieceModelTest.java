@@ -23,6 +23,15 @@ class PieceModelTest {
     }
 
     @Test
+    void hasTurnNow() {
+        assert wolf.hasTurnNow();
+        assert !sheep.hasTurnNow() && !sheepMovingDown.hasTurnNow();
+        chessboardModel.changeTurn();
+        assert sheep.hasTurnNow();
+        assert !wolf.hasTurnNow();
+    }
+
+    @Test
     void getPossibleMoves() {
         wolf.place(chessboardModel.getField(1, 1));
         sheepMovingDown.place(chessboardModel.getField(0, 2));
@@ -40,6 +49,8 @@ class PieceModelTest {
         sheepMoves.add(chessboardModel.getField(4, 6));
 
         assert wolf.getPossibleMoves().containsAll(wolfMoves);
+        assert sheep.getPossibleMoves().equals(new ArrayList<FieldModel>());
+        chessboardModel.changeTurn();
         assert sheep.getPossibleMoves().containsAll(sheepMoves);
         assert sheepMovingDown.getPossibleMoves().containsAll(sheepDownMoves);
     }

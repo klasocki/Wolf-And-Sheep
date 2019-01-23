@@ -48,7 +48,7 @@ public class FieldController {
         // TODO Model should calculate the fields to prompt
         unselectField();
         List<FieldModel> moves = fieldView.getFieldModel().getPossibleMoves();
-        if (moves.size() == 0) return;
+        if (moves.size() == 0 ) return;
         for (FieldModel f : moves) {
             chessboardView.getFieldView(f).setFill(ChessboardView.prompt);
         }
@@ -61,7 +61,7 @@ public class FieldController {
         PieceView pieceViewToMove = chessboardView.getFieldView(fieldSelected).getPieceView();
         List<FieldModel> moves = fieldSelected.getPossibleMoves();
         unselectField();
-        if (moves.contains(destination)) {
+        if (moves.contains(destination) ) {
             pieceController.movePiece(pieceViewToMove, destination);
         }
     }

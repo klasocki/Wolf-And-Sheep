@@ -1,10 +1,12 @@
 package board;
 
+import game.Game;
+
 public class ChessboardModel {
     public final static int size = 8;
     protected FieldModel[][] chessboard;
-    private boolean WolfsTurn = true; //WolfModel starts the game
     private FieldModel fieldModelSelected = null;
+    private Game game = new Game();
 
     public FieldModel getFieldModelSelected() {
         return fieldModelSelected;
@@ -14,6 +16,13 @@ public class ChessboardModel {
         this.fieldModelSelected = fieldModelSelected;
     }
 
+    public Class turnOf() {
+        return game.turnOf();
+    }
+
+    public void changeTurn() {
+        game.changeTurn();
+    }
 
     public ChessboardModel() {
         //Filling the chessboard with Rectangles
@@ -35,11 +44,4 @@ public class ChessboardModel {
         return chessboard[row][col];
     }
 
-    public boolean wolfsTurn() {
-        return WolfsTurn;
-    }
-
-    public void changeTurn() {
-        WolfsTurn = !WolfsTurn;
-    }
 }
