@@ -1,8 +1,7 @@
-package Board;
+package board;
 
-import Pieces.PieceView;
+import pieces.PieceView;
 import javafx.beans.binding.DoubleBinding;
-import javafx.beans.property.Property;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;

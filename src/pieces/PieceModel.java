@@ -1,11 +1,8 @@
-package Pieces;
+package pieces;
 
-import Board.ChessboardModel;
-import Board.ChessboardView;
-import Board.FieldModel;
-import javafx.scene.shape.Circle;
+import board.ChessboardModel;
+import board.FieldModel;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public abstract class PieceModel {

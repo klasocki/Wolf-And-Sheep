@@ -1,8 +1,7 @@
-package Pieces;
+package pieces;
 
-import Board.ChessboardModel;
-import Board.ChessboardView;
-import Board.FieldModel;
+import board.ChessboardModel;
+import board.FieldModel;
 
 import java.util.ArrayList;
 

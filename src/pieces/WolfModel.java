@@ -1,7 +1,6 @@
-package Pieces;
+package pieces;
 
-import Board.ChessboardModel;
-import Board.FieldModel;
+import board.ChessboardModel;
 
 public class WolfModel extends PieceModel {
     public WolfModel(ChessboardModel chessboardModel) {

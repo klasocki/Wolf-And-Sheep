@@ -1,6 +1,6 @@
-package Pieces;
+package pieces;
 
-import Board.ChessboardView;
+import board.ChessboardView;
 
 
 public class WolfView extends PieceView {

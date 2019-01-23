@@ -1,6 +1,6 @@
-package Pieces;
+package pieces;
 
-import Board.*;
+import board.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 

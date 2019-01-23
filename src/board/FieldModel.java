@@ -1,7 +1,7 @@
 
-package Board;
+package board;
 
-import Pieces.PieceModel;
+import pieces.PieceModel;
 
 import java.util.ArrayList;
 import java.util.List;

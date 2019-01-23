@@ -1,8 +1,8 @@
-package Pieces;
+package pieces;
 
-import Board.ChessboardModel;
-import Board.ChessboardView;
-import Board.FieldModel;
+import board.ChessboardModel;
+import board.ChessboardView;
+import board.FieldModel;
 
 public class PieceController {
     private ChessboardModel chessboardModel;

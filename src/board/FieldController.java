@@ -1,7 +1,7 @@
-package Board;
+package board;
 
-import Pieces.PieceController;
-import Pieces.PieceView;
+import pieces.PieceController;
+import pieces.PieceView;
 
 import java.util.List;
 

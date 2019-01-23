@@ -1,4 +1,4 @@
-package Board;
+package board;
 
 public class ChessboardModel {
     public final static int size = 8;
