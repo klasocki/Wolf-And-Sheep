@@ -1,13 +1,14 @@
 package Pieces;
 
-import Board.Field;
+import Board.ChessboardModel;
+import Board.FieldModel;
 
 import java.util.ArrayList;
 
 public class MovesUpward implements Movable {
 
     @Override
-    public ArrayList<Field> getPossibleMoves(Field position) {
-        return PossibleMovesFiller.fillPossibleMoves(position, upRowMove);
+    public ArrayList<FieldModel> getPossibleMoves(ChessboardModel chessboard, FieldModel position) {
+        return PossibleMovesFiller.fillPossibleMoves(chessboard, position, upRowMove);
     }
 }

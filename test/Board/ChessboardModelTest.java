@@ -2,18 +2,12 @@ package Board;
 
 import org.junit.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
 
-public class ChessboardTest {
 
-    Chessboard board;
+public class ChessboardModelTest {
 
-    @Test
-    public void getInstance() {
-        board = Chessboard.getInstance();
-    }
-
-    @Test
+  /*  @Test
     public void wolfsTurn() {
         assertTrue(board.wolfsTurn()); //wolf starts, so should be true by default
     }
@@ -24,5 +18,5 @@ public class ChessboardTest {
         assertFalse(board.wolfsTurn());
         board.changeTurn();
         assertTrue(board.wolfsTurn());
-    }
+    }*/
 }

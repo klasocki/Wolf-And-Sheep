@@ -1,12 +1,13 @@
 package Pieces;
 
-import Board.Chessboard;
-import Board.Field;
+import Board.ChessboardModel;
+import Board.ChessboardView;
+import Board.FieldModel;
 
 import java.util.ArrayList;
 
 public interface Movable {
-    ArrayList<Field> getPossibleMoves(Field position);
+    ArrayList<FieldModel> getPossibleMoves(ChessboardModel chessboard, FieldModel position);
 
     // public void move(Position oldPosition, Position newPosition) ;
 
@@ -17,13 +18,13 @@ public interface Movable {
     int downRowMove = 1;
 
     class PossibleMovesFiller {
-        static ArrayList<Field> fillPossibleMoves(Field position, int rowMove) {
-            ArrayList<Field> result = new ArrayList<>();
+        static ArrayList<FieldModel> fillPossibleMoves(ChessboardModel chessboard, FieldModel position, int rowMove) {
+            ArrayList<FieldModel> result = new ArrayList<>();
             for (int i = 0; i < 2; i++) {
                 int row = position.getRow() + rowMove;
                 int col = position.getCol() + colMovesPossible[i];
-                if (Chessboard.isValidMove(row, col))
-                    result.add(Chessboard.getField(row, col));
+                if (chessboard.isValidMove(row, col))
+                    result.add(chessboard.getField(row, col));
             }
             return result;
         }

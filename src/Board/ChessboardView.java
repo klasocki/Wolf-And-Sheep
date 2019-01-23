@@ -1,61 +1,58 @@
 package Board;
 
-import Pieces.Piece;
-import Pieces.Wolf;
+import Pieces.PieceView;
+import javafx.beans.binding.DoubleBinding;
+import javafx.beans.property.Property;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
-import javafx.scene.shape.Rectangle;
 
 
 public class ChessboardView {
-    private static GridPane chessboardView;
-    static final Color nonPlayable = Color.BISQUE;
-    static final Color playable = Color.valueOf("#383838");
-    static final Color wolfColor = Color.GREENYELLOW;
-    static final Color sheepColor = Color.LIGHTGREY;
+    private GridPane chessboardGrid;
+    private FieldView[][] chessboard;
+    final int size;
+    final static Color nonPlayable = Color.BISQUE;
+    final static Color playable = Color.valueOf("#383838");
+    final static Color prompt = Color.GREEN;
+    final static Color selected = Color.GOLD;
+    public final static Color wolfColor = Color.CHOCOLATE;
+    public final static Color sheepColor = Color.LIGHTGREY;
 
-    public static GridPane draw() {
-        int size = Chessboard.chessboard.length;
-        chessboardView = new GridPane();
+    public ChessboardView(ChessboardModel chessboardModel) {
+        this.size = ChessboardModel.size;
+        chessboard = new FieldView[size][size];
+        chessboardGrid = new GridPane();
         for (int row = 0; row < size; row++) {
             for (int col = 0; col < size; col++) {
-                Rectangle currentField = Chessboard.chessboard[row][col].viewRepresentation;
-                Color color;
-                if ((row + col) % 2 == 0) color = nonPlayable;
-                else color = playable;
-
-                currentField.setFill(color);
-                chessboardView.add(currentField, col, row);
-                currentField.widthProperty().bind(chessboardView.widthProperty().divide(size));
-                currentField.heightProperty().bind(chessboardView.heightProperty().divide(size));
+                FieldView currentField = new FieldView(
+                        chessboardModel.getField(row, col), this, chessboardModel
+                        );
+                chessboardGrid.add(currentField.getViewRepresentation(), col, row);
+                chessboard[row][col] = currentField;
             }
         }
-        return chessboardView;
     }
 
-    public static void placePiece(Piece piece, Field field) {
-        if (piece.isPlaced()) {
-            movePiece(piece.getViewRepresentation(), field);
-            return;
-        }
-        int size = Chessboard.chessboard.length;
-        Circle circle = new Circle();
-        circle.setFill((piece.getClass() == Wolf.class) ? wolfColor : sheepColor);
-        circle.radiusProperty().bind(chessboardView.widthProperty().divide(size * 2 + 1));
-        piece.setViewRepresentation(circle);
-        chessboardView.add(circle, field.getCol(), field.getRow());
+    public FieldView getFieldView(FieldModel fieldModel) {
+        return chessboard[fieldModel.getRow()][fieldModel.getCol()];
     }
 
-    public static void movePiece(Circle piece, Field field) {
-        chessboardView.getChildren().remove(piece);
-        chessboardView.add(piece, field.getCol(), field.getRow());
-        /* without this color setting, mouse leaves the circle after the move
-        without entering it, resulting in
-        the circle getting darker and darker
-        */
-        piece.setFill(Color.valueOf(piece.getFill().toString()).brighter());
+    public void movePiece(PieceView piece, int col, int row) {
+        Circle pieceView = piece.getViewRepresentation();
+        chessboardGrid.getChildren().remove(pieceView);
+        chessboardGrid.add(pieceView, col, row);
     }
 
+    public void addPiece(Circle piece, int col, int row) {
+        chessboardGrid.add(piece, col, row);
+    }
 
+    public GridPane getChessboardGrid() {
+        return chessboardGrid;
+    }
+
+    public DoubleBinding getPieceRadiusProperty(){
+        return chessboardGrid.widthProperty().divide(size * 2 + 1);
+    }
 }

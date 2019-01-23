@@ -1,19 +1,20 @@
 package Pieces;
 
-import Board.Field;
+import Board.ChessboardModel;
+import Board.FieldModel;
 
 import java.util.ArrayList;
 
 public class MovesBothWays implements Movable {
 
     @Override
-    public ArrayList<Field> getPossibleMoves(Field position) {
+    public ArrayList<FieldModel> getPossibleMoves(ChessboardModel chessboard, FieldModel position) {
         //
         Movable movesUp = new MovesUpward();
         Movable movesDown = new MovesDownward();
-        ArrayList<Field> upMoves = movesUp.getPossibleMoves(position);
-        ArrayList<Field> downMoves = movesDown.getPossibleMoves(position);
-        ArrayList<Field> result = new ArrayList<>();
+        ArrayList<FieldModel> upMoves = movesUp.getPossibleMoves(chessboard, position);
+        ArrayList<FieldModel> downMoves = movesDown.getPossibleMoves(chessboard, position);
+        ArrayList<FieldModel> result = new ArrayList<>();
         result.addAll(upMoves);
         result.addAll(downMoves);
         return result;
