@@ -1,28 +1,13 @@
 package board;
 
 import game.Game;
+import pieces.PieceModel;
 
 public class ChessboardModel {
     public final static int size = 8;
     protected FieldModel[][] chessboard;
     private FieldModel fieldModelSelected = null;
     private Game game = new Game();
-
-    public FieldModel getFieldModelSelected() {
-        return fieldModelSelected;
-    }
-
-    public void setFieldModelSelected(FieldModel fieldModelSelected) {
-        this.fieldModelSelected = fieldModelSelected;
-    }
-
-    public Class turnOf() {
-        return game.turnOf();
-    }
-
-    public void changeTurn() {
-        game.changeTurn();
-    }
 
     public ChessboardModel() {
         //Filling the chessboard with Rectangles
@@ -42,6 +27,35 @@ public class ChessboardModel {
 
     public FieldModel getField(int row, int col) {
         return chessboard[row][col];
+    }
+
+
+    public FieldModel getFieldModelSelected() {
+        return fieldModelSelected;
+    }
+
+    public void setFieldModelSelected(FieldModel fieldModelSelected) {
+        this.fieldModelSelected = fieldModelSelected;
+    }
+
+    public Class turnOf() {
+        return game.turnOf();
+    }
+
+    public void changeTurn() {
+        game.changeTurn();
+    }
+
+    public void saveMove(Game.Move move) {
+        game.saveMove(move);
+    }
+
+    public Game.Move popMove() {
+        return game.popMove();
+    }
+
+    public boolean canUndo() {
+        return game.canUndo();
     }
 
 }

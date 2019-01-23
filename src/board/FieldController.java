@@ -21,12 +21,13 @@ public class FieldController {
     }
 
     public void mouseClicked(FieldView fieldView) {
-        if (!fieldView.getFieldModel().isTaken() && chessboardModel.getFieldModelSelected() != null) {
+        if (chessboardModel.getFieldModelSelected() != null && !fieldView.getFieldModel().isTaken()) {
             //If field clicked is a possible move, it does it, else it unselects current filed
             moveSelectedPiece(fieldView.getFieldModel());
         } else if (fieldView.getFieldModel().isTaken()) {
-            //So, every time you click on a taken field, you select pieceModel you want to move
-            if (fieldView.getFieldModel() == chessboardModel.getFieldModelSelected())
+            //So, every time you click on a taken field, you either select pieceModel you want to move
+            // or deselect current selection by clicking it
+            if (fieldView.getFieldModel().equals(chessboardModel.getFieldModelSelected()))
                 unselectField();
             else
                 selectField(fieldView);

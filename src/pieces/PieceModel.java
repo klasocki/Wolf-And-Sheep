@@ -2,6 +2,7 @@ package pieces;
 
 import board.ChessboardModel;
 import board.FieldModel;
+import game.Game;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -28,13 +29,18 @@ public abstract class PieceModel {
         List<FieldModel> possibleMoves = this.getPossibleMoves();
         //checking if requested move is valid for a certain piece
         if (possibleMoves.contains(fieldModel) && this.hasTurnNow() ) {
-            this.fieldModel.setPieceModel(null);
-            this.fieldModel = fieldModel;
-            fieldModel.setPieceModel(this);
-            chessboardModel.changeTurn();
+            chessboardModel.saveMove(new Game.Move(this.fieldModel, fieldModel));
+            this.moveWithoutCheck(fieldModel);
             return true;
         }
         return false;
+    }
+
+    public void moveWithoutCheck(FieldModel fieldModel) {
+        this.fieldModel.setPieceModel(null);
+        this.fieldModel = fieldModel;
+        fieldModel.setPieceModel(this);
+        chessboardModel.changeTurn();
     }
 
     public boolean place(FieldModel fieldModel) {

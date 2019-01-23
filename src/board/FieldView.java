@@ -29,7 +29,7 @@ public class FieldView {
                 chessboard.heightProperty().divide(ChessboardModel.size));
     }
 
-    public void setFill(Color color) {
+    void setFill(Color color) {
         viewRepresentation.setFill(color);
     }
 
@@ -50,20 +50,20 @@ public class FieldView {
     }
 
     public void mouseExited() {
-        colorField(true);
+        colorField(ColorTo.DARKER);
     }
 
     public void mouseEntered() {
-       colorField(false);
+        colorField(ColorTo.BRIGHTER);
     }
 
-    private void colorField(boolean darker) {
-        Color current = Color.valueOf(viewRepresentation.getFill().toString());
-        Color toSet = darker ? current.darker() : current.brighter();
+
+    public void colorField(ColorTo color) {
+        Color toSet = ColorTo.getFill(color, this);
         viewRepresentation.setFill(toSet);
         if (fieldModel.isTaken()) {
-            if (darker) pieceView.makeDarker();
-            else pieceView.makeBrighter();
+            if (color.equals(ColorTo.DARKER)) pieceView.makeDarker();
+            else if (color.equals(ColorTo.BRIGHTER)) pieceView.makeBrighter();
         }
     }
 
@@ -73,4 +73,21 @@ public class FieldView {
         viewRepresentation.setOnMouseClicked(event -> fieldController.mouseClicked(this));
     }
 
+    public enum ColorTo {
+        DARKER, BRIGHTER, PLAYABLE;
+
+        private static Color getFill(ColorTo color, FieldView fieldView) {
+            Color current = Color.valueOf(fieldView.viewRepresentation.getFill().toString());
+            switch (color) {
+                case PLAYABLE:
+                    return ChessboardView.playable;
+                case DARKER:
+                    return current.darker();
+                case BRIGHTER:
+                    return current.brighter();
+                default:
+                    return Color.BLANCHEDALMOND; // just because
+            }
+        }
+    }
 }

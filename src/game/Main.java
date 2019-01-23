@@ -31,6 +31,8 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class Main extends Application {
+    ChessboardModel chessboardModel;
+    ChessboardView chessboardView;
 
     @Override
     public void start(Stage window) {
@@ -54,22 +56,23 @@ public class Main extends Application {
         rightMenu.setPadding(new Insets(20,0,20,20));
         rightMenu.setAlignment(Pos.BASELINE_RIGHT);
         rightMenu.getChildren().addAll(undoButton, restartButton, quitButton);
+        GameController gameController = GameController.initGame(true);
+        GridPane boardView = getChessboardGrid(window, gameController);
+
+        undoButton.setOnAction(event -> {
+            gameController.undoLastMove();
+        });
 
         window.setScene(new Scene(layout, 820, 620));
         window.setResizable(false);
-        GridPane boardView = getChessboardGrid(window);
         layout.getChildren().addAll(boardView, rightMenu);
 
         window.show();
     }
 
-    private GridPane getChessboardGrid(Stage window) {
-        ChessboardModel chessboardModel = new ChessboardModel();
-        ChessboardView chessboardView = new ChessboardView(chessboardModel);
-        GridPane boardView = chessboardView.getChessboardGrid();
+    private GridPane getChessboardGrid(Stage window, GameController gameController) {
+        GridPane boardView = gameController.getChessboardGrid();
         boardView.prefWidthProperty().bind(window.widthProperty().subtract(200));
-        PieceFactory pieceFactory = new PieceFactory(chessboardModel, chessboardView);
-        pieceFactory.placePieces( true);
         return boardView;
     }
 

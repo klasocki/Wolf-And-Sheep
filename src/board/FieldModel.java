@@ -27,6 +27,10 @@ public class FieldModel {
         this.pieceModel = pieceModel;
     }
 
+    public PieceModel getPieceModel() {
+        return pieceModel;
+    }
+
     public boolean isTaken() {
         return pieceModel != null;
     }

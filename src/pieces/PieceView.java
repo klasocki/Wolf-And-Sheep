@@ -38,19 +38,21 @@ public abstract class PieceView {
 
     public void move(FieldModel fieldModel) {
         if (pieceModel.move(fieldModel)) {
-            fieldView.setPieceView(null);
-            fieldView = chessboardView.getFieldView(fieldModel);
-            fieldView.setPieceView(this);
-            fieldView.addEventHandlers(this.viewRepresentation);
+            this.moveWithoutColorChange(fieldModel);
         /* without this color setting, mouse leaves the circle
         without entering it after the move, resulting in
         the circle getting darker and darker
         */
-            viewRepresentation.setFill(
-                    Color.valueOf(viewRepresentation.getFill().toString()).brighter());
-
-            chessboardView.movePiece(this, fieldModel.getCol(), fieldModel.getRow());
+            this.makeBrighter();
         }
+    }
+
+    public void moveWithoutColorChange(FieldModel fieldModel) {
+        fieldView.setPieceView(null);
+        fieldView = chessboardView.getFieldView(fieldModel);
+        fieldView.setPieceView(this);
+        fieldView.addEventHandlers(this.viewRepresentation);
+        chessboardView.movePiece(this, fieldModel.getCol(), fieldModel.getRow());
     }
 
     public void makeBrighter() {
@@ -60,5 +62,6 @@ public abstract class PieceView {
     public void makeDarker() {
         viewRepresentation.setFill(Color.valueOf(viewRepresentation.getFill().toString()).darker());
     }
+
 
 }
