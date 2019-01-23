@@ -14,13 +14,14 @@ TODO Add artificial intelligence
 TODO Make AI intelligent. Use machine learning
  */
 
-package board;
+package game;
 
+import board.ChessboardModel;
+import board.ChessboardView;
+import javafx.application.Platform;
 import pieces.*;
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -31,9 +32,11 @@ public class Main extends Application {
 
     @Override
     public void start(Stage window) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
-        window.setTitle("WolfModel and SheepModel - Chessboard game");
-        //window.setOnCloseRequest(event -> );
+        window.setTitle("Wolf and Sheep - Chessboard game");
+        window.setOnCloseRequest(event -> {
+            event.consume();
+            closeWindow(window);
+        });
         HBox layout = new HBox();
         layout.setPadding(new Insets(10, 10, 10, 10));
         VBox rightMenu = new VBox();
@@ -50,11 +53,18 @@ public class Main extends Application {
         ChessboardView chessboardView = new ChessboardView(chessboardModel);
         GridPane boardView = chessboardView.getChessboardGrid();
         boardView.prefWidthProperty().bind(window.widthProperty().subtract(200));
-        PieceFactory factory = new PieceFactory(chessboardModel, chessboardView);
-        factory.placePieces( true);
+        PieceFactory pieceFactory = new PieceFactory(chessboardModel, chessboardView);
+        pieceFactory.placePieces( true);
         return boardView;
     }
 
+    private void closeWindow(Stage window) {
+        boolean answer = ConfirmationBox.display("Exiting Wolf and Sheep",
+                "Are you sure you want to quit? Your game progress will be lost");
+        if (answer) {
+            Platform.exit();
+        }
+    }
 
     public static void main(String[] args) {
         launch(args);
