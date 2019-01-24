@@ -46,6 +46,7 @@ public class ConfirmationBox {
         layout.getChildren().addAll(label, buttons);
         layout.setAlignment(Pos.CENTER);
         Scene scene = new Scene(layout);
+        scene.getStylesheets().add(MenuScene.menuStylesheet);
         window.setScene(scene);
         window.showAndWait();
         return answer;

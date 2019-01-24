@@ -5,19 +5,18 @@ import game.GameOverObserver;
 import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 import java.util.Arrays;
 
 public class GameScene implements GameOverObserver {
     private Stage window;
+    private final String gameStylesheet = "gui/Game.css";
 
     public GameScene(Stage window) {
         this.window = window;
@@ -29,7 +28,9 @@ public class GameScene implements GameOverObserver {
         gameController.addObserver(this);
         GridPane boardView = getChessboardGrid(window, gameController);
         HBox layout = prepareLayout(gameController, boardView);
-        window.setScene(new Scene(layout, 820, 620));
+        Scene scene = new Scene(layout, 820, 620);
+        scene.getStylesheets().add(gameStylesheet);
+        window.setScene(scene);
         window.show();
         GuiUtils.centerWindow(window);
     }
@@ -95,13 +96,13 @@ public class GameScene implements GameOverObserver {
 
     @Override
     public void wolfHasWon() {
-        GameOverBox.display("Game Over", "The Wolf has won!!!");
+        AlertBox.display("Game Over", "The Wolf has won!!!");
         restart();
     }
 
     @Override
     public void sheepHaveWon() {
-        GameOverBox.display("Game Over", "The Sheep have won!!!");
+        AlertBox.display("Game Over", "The Sheep have won!!!");
         restart();
     }
 

@@ -9,13 +9,11 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-public class GameOverBox {
+public class AlertBox {
     public static void display(String title, String message) {
         Stage window = new Stage();
         window.initModality(Modality.APPLICATION_MODAL);
         window.setTitle(title);
-        window.setMinWidth(500);
-        window.setMinHeight(200);
         Label label = new Label();
         label.setText(message);
         Button okButton = new Button("OK");
@@ -28,7 +26,9 @@ public class GameOverBox {
         layout.setPadding(new Insets(0,10,0,10));
         layout.getChildren().addAll(label, okButton);
         layout.setAlignment(Pos.CENTER);
+        layout.setPadding(new Insets(15,15,15,15));
         Scene scene = new Scene(layout);
+        scene.getStylesheets().add(MenuScene.menuStylesheet);
         window.setScene(scene);
         window.showAndWait();
     }

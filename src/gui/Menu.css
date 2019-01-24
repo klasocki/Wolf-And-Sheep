@@ -1,0 +1,25 @@
+.root{
+    -fx-background-color: #282828;
+    -fx-font-size: 11px;
+    -fx-text-fill: #B8B8B8;
+    -fx-font-family: "Apple Chancery";
+}
+
+.label{
+    -fx-text-fill: #B8B8B8;
+    -fx-font-family: "Apple Chancery";
+    -fx-font-size: 16px;
+}
+
+.button{
+    -fx-background-color: linear-gradient(#002288, #184192);
+    -fx-background-radius: 5;
+    -fx-text-fill: #ffdccc;
+    -fx-font-size: 14px;
+}
+
+.button:hover{
+    -fx-background-color: linear-gradient(#003399, #2952a3);
+    -fx-text-fill: #ddcbbb;
+
+}
