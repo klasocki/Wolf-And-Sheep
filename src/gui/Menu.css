@@ -21,5 +21,9 @@
 .button:hover{
     -fx-background-color: linear-gradient(#003399, #2952a3);
     -fx-text-fill: #ddcbbb;
+    -fx-cursor: hand;
+}
 
+.button-help:focused{
+    -fx-cursor: wait;
 }

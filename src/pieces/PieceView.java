@@ -14,6 +14,7 @@ public abstract class PieceView {
         this.pieceModel = pieceModel;
         this.chessboardView = chessboardView;
         Circle viewRepresentation = new Circle();
+        viewRepresentation.getStyleClass().add("piece");
         viewRepresentation.radiusProperty().bind(chessboardView.getPieceRadiusProperty());
         this.viewRepresentation = viewRepresentation;
     }

@@ -19,6 +19,7 @@ public class FieldView {
         if ((fieldModel.getRow() + fieldModel.getCol()) % 2 == 1) {
             addEventHandlers(viewRepresentation);
             viewRepresentation.setFill(ChessboardView.playable);
+            viewRepresentation.getStyleClass().add("playable-field");
         } else {
             viewRepresentation.setFill(ChessboardView.nonPlayable);
         }

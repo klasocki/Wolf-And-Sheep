@@ -4,10 +4,9 @@ It's a computer version of the "WolfModel and SheepModel" chessboard game, featu
 I create it for learning
 DONE Make it playable
 TODO Refactor!!!!!
-TODO Use factory design pattern to create pieces
-TODO Make the game handle turns
-TODO Add winning messages
-TODO Add undo and other control buttons, and help button
+DONE Make the game handle turns
+DONE Add winning messages
+DONE Add undo and other control buttons, and help button
 TODO Use images of pieces
 TODO make an android distribution
 TODO Add artificial intelligence

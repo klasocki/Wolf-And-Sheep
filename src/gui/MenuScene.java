@@ -2,6 +2,7 @@ package gui;
 
 import javafx.application.Platform;
 import javafx.geometry.Pos;
+import javafx.scene.Cursor;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -46,6 +47,7 @@ public class MenuScene {
         Button singlePlayerButton = new Button("One Player");
         Button multiPlayerButton = new Button("Two Players");
         Button helpButton = new Button("Help");
+        helpButton.getStyleClass().add("button-help");
         Button[] buttons = {singlePlayerButton, helpButton};
         GuiUtils.setButtonHeightAndBindSizes(50, Arrays.asList(buttons), multiPlayerButton);
         layout.getChildren().addAll(singlePlayerButton, multiPlayerButton, helpButton);
@@ -59,15 +61,18 @@ public class MenuScene {
             gameScene.display();
         });
 
-        helpButton.setOnAction(event -> {
-            if (Desktop.isDesktopSupported() && Desktop.getDesktop().isSupported(Desktop.Action.BROWSE)) {
-                try {
-                    Desktop.getDesktop().browse(new URI(helpURL));
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+        helpButton.setOnAction(event -> openHelpInBrowser(helpButton));
+    }
+
+    private void openHelpInBrowser(Button button) {
+        button.setCursor(Cursor.WAIT);
+        if (Desktop.isDesktopSupported() && Desktop.getDesktop().isSupported(Desktop.Action.BROWSE)) {
+            try {
+                Desktop.getDesktop().browse(new URI(helpURL));
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-        });
+        }
     }
 
     private void prepareStage() {

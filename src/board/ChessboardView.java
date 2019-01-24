@@ -17,12 +17,12 @@ public class ChessboardView {
     private List<PieceMovedObserver> observers = new ArrayList<>();
 
     final int size;
-    final static Color nonPlayable = Color.BISQUE;
+    final static Color nonPlayable = Color.valueOf("#B8B8B8");
     final static Color playable = Color.valueOf("#383838");
-    final static Color prompt = Color.GREEN;
-    final static Color selected = Color.GOLD;
-    public final static Color wolfColor = Color.CHOCOLATE;
-    public final static Color sheepColor = Color.LIGHTGREY;
+    final static Color prompt = Color.valueOf("#16470e");
+    final static Color selected = Color.valueOf("#908F09");
+    public final static Color wolfColor = Color.valueOf("#9C2D2A");
+    public final static Color sheepColor = Color.valueOf("#B19868");
 
     public ChessboardView(ChessboardModel chessboardModel) {
         this.size = ChessboardModel.size;
