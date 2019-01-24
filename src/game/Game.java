@@ -9,7 +9,7 @@ import java.util.Stack;
 public class Game {
     private boolean wolfsTurn = true; //WolfModel starts the game
     public boolean sheepMoveUp;
-    Stack<Move> listOfMoves = new Stack<>();
+    private Stack<Move> listOfMoves = new Stack<>();
 
     public void saveMove(Move move) {
         listOfMoves.push(move);

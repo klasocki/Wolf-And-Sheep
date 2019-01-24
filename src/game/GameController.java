@@ -11,6 +11,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 
+/**
+ * Class for instantiating and managing games
+ */
 public class GameController implements PieceMovedObserver{
     private ChessboardModel chessboardModel;
     private ChessboardView chessboardView;
@@ -18,6 +21,13 @@ public class GameController implements PieceMovedObserver{
     private List<PieceModel> pieces;
     private List<GameOverObserver> observers;
 
+    /**
+     * Creates all the models and views required for the game
+     * @param playerControlsSheep If so, the sheep will automatically be placed at the bottom of the chessboard
+     * @return GameController object to use for the gui
+     * @since 2.0
+     * @see GameController
+     */
     public static GameController initGame(boolean playerControlsSheep) {
         ChessboardModel cm = new ChessboardModel();
         cm.setSheepMoveUp(playerControlsSheep);
@@ -27,8 +37,8 @@ public class GameController implements PieceMovedObserver{
         return new GameController(cm, cv, pieces, playerControlsSheep);
     }
 
-    public GameController(ChessboardModel chessboardModel, ChessboardView chessboardView,
-                          List<PieceModel> pieces, boolean sheepMoveUp) {
+    GameController(ChessboardModel chessboardModel, ChessboardView chessboardView,
+                   List<PieceModel> pieces, boolean sheepMoveUp) {
         this.chessboardModel = chessboardModel;
         this.chessboardView = chessboardView;
         chessboardView.addObserver(this);
@@ -55,11 +65,11 @@ public class GameController implements PieceMovedObserver{
         }
     }
 
-    public boolean sheepWon() {
+    boolean sheepWon() {
         return getWolf().getPossibleMoves().size() == 0 && getWolf().hasTurnNow();
     }
 
-    public boolean wolfWon() {
+    boolean wolfWon() {
         List<Integer> sheepRows = getSheep().stream().
                 map(a -> a.getFieldModel().getRow()).sorted().collect(Collectors.toList());
         int lastSheepRowNumber = sheepMoveUp ? sheepRows.get(sheepRows.size() - 1) : sheepRows.get(0);

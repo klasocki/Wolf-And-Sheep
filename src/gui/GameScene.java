@@ -18,11 +18,11 @@ public class GameScene implements GameOverObserver {
     private Stage window;
     private final String gameStylesheet = "gui/Game.css";
 
-    public GameScene(Stage window) {
+    GameScene(Stage window) {
         this.window = window;
     }
 
-    public void display() {
+    void display() {
         prepareStage();
         GameController gameController = GameController.initGame(true);
         gameController.addObserver(this);

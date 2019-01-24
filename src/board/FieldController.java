@@ -1,26 +1,21 @@
 package board;
 
-import pieces.PieceController;
 import pieces.PieceView;
 
 import java.util.List;
 
 //TODO too much logic inside controller, move
 
-public class FieldController {
+class FieldController {
     private ChessboardModel chessboardModel;
     private ChessboardView chessboardView;
-    private FieldModel fieldModel;
-    private PieceController pieceController;
 
-    public FieldController(ChessboardModel chessboardModel, ChessboardView chessboardView, FieldModel fieldModel) {
+    FieldController(ChessboardModel chessboardModel, ChessboardView chessboardView) {
         this.chessboardModel = chessboardModel;
         this.chessboardView = chessboardView;
-        this.fieldModel = fieldModel;
-        this.pieceController = new PieceController(chessboardModel, chessboardView);
     }
 
-    public void mouseClicked(FieldView fieldView) {
+    void mouseClicked(FieldView fieldView) {
         if (chessboardModel.getFieldModelSelected() != null && !fieldView.getFieldModel().isTaken()) {
             //If field clicked is a possible move, it does it, else it unselects current filed
             moveSelectedPiece(fieldView.getFieldModel());
@@ -46,7 +41,6 @@ public class FieldController {
     }
 
     private void selectField(FieldView fieldView) {
-        // TODO Model should calculate the fields to prompt
         unselectField();
         List<FieldModel> moves = fieldView.getFieldModel().getPossibleMoves();
         if (moves.size() == 0 ) return;
@@ -63,11 +57,8 @@ public class FieldController {
         List<FieldModel> moves = fieldSelected.getPossibleMoves();
         unselectField();
         if (moves.contains(destination) ) {
-            pieceController.movePiece(pieceViewToMove, destination);
+            pieceViewToMove.move(destination);
         }
     }
 
-    public void placePiece(PieceView pieceView){
-        pieceController.placePiece(pieceView, this.fieldModel);
-    }
 }

@@ -6,13 +6,11 @@ import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 class PieceModelTest {
-    ChessboardModel chessboardModel = new ChessboardModel();
-    PieceModel wolf = new WolfModel(chessboardModel);
-    PieceModel sheep = new SheepModel(chessboardModel, true);
-    PieceModel sheepMovingDown = new SheepModel(chessboardModel, false);
+    private ChessboardModel chessboardModel = new ChessboardModel();
+    private PieceModel wolf = new WolfModel(chessboardModel);
+    private PieceModel sheep = new SheepModel(chessboardModel, true);
+    private PieceModel sheepMovingDown = new SheepModel(chessboardModel, false);
 
     @Test
     void place() {

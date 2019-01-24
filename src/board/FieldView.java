@@ -12,9 +12,9 @@ public class FieldView {
     private PieceView pieceView;
     private FieldController fieldController;
 
-    public FieldView(FieldModel fieldModel, ChessboardView chessboardView, ChessboardModel chessboardModel) {
+    FieldView(FieldModel fieldModel, ChessboardView chessboardView, ChessboardModel chessboardModel) {
         this.fieldModel = fieldModel;
-        this.fieldController = new FieldController(chessboardModel, chessboardView, fieldModel);
+        this.fieldController = new FieldController(chessboardModel, chessboardView);
         this.viewRepresentation = new Rectangle();
         if ((fieldModel.getRow() + fieldModel.getCol()) % 2 == 1) {
             addEventHandlers(viewRepresentation);
@@ -24,6 +24,7 @@ public class FieldView {
             viewRepresentation.setFill(ChessboardView.nonPlayable);
         }
         GridPane chessboard = chessboardView.getChessboardGrid();
+        chessboard.add(viewRepresentation, fieldModel.getCol(), fieldModel.getRow());
         viewRepresentation.widthProperty().bind(
                 chessboard.widthProperty().divide(ChessboardModel.size));
         viewRepresentation.heightProperty().bind(
@@ -34,11 +35,11 @@ public class FieldView {
         viewRepresentation.setFill(color);
     }
 
-    public Rectangle getViewRepresentation() {
+    Rectangle getViewRepresentation() {
         return viewRepresentation;
     }
 
-    public FieldModel getFieldModel() {
+    FieldModel getFieldModel() {
         return fieldModel;
     }
 
@@ -50,11 +51,11 @@ public class FieldView {
         return pieceView;
     }
 
-    public void mouseExited() {
+    private void mouseExited() {
         colorField(ColorTo.DARKER);
     }
 
-    public void mouseEntered() {
+    private void mouseEntered() {
         colorField(ColorTo.BRIGHTER);
     }
 

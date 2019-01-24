@@ -14,16 +14,16 @@ import java.net.URI;
 import java.util.Arrays;
 
 
-public class MenuScene {
-    Stage window;
+class MenuScene {
+    private Stage window;
     final private String helpURL = "https://en.wikipedia.org/wiki/Fox_games#Fox_and_Hounds";
-    final public static String menuStylesheet = "gui/Menu.css";
+    final static String menuStylesheet = "gui/Menu.css";
 
-    public MenuScene(Stage window) {
+    MenuScene(Stage window) {
         this.window = window;
     }
 
-    public void display() {
+    void display() {
         prepareStage();
         VBox layout = prepareLayout();
         Scene scene = new Scene(layout, 333, 333);

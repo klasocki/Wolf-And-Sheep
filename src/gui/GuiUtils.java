@@ -7,8 +7,8 @@ import javafx.stage.Stage;
 
 import java.util.List;
 
-public class GuiUtils {
-    public static void setButtonHeightAndBindSizes(int minHeight, List<Button> buttons, Button longestButton) {
+class GuiUtils {
+    static void setButtonHeightAndBindSizes(int minHeight, List<Button> buttons, Button longestButton) {
         longestButton.setMinHeight(minHeight);
         for (Button button : buttons) {
             button.minHeightProperty().bind(longestButton.minHeightProperty());
@@ -16,7 +16,7 @@ public class GuiUtils {
         }
     }
 
-    public static void centerWindow(Stage window) {
+    static void centerWindow(Stage window) {
         Rectangle2D primScreenBounds = Screen.getPrimary().getVisualBounds();
         window.setX((primScreenBounds.getWidth() - window.getWidth()) / 2);
         window.setY((primScreenBounds.getHeight() - window.getHeight()) / 2);

@@ -9,8 +9,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class FieldModelTest {
 
-    FieldModel testFieldOne = new FieldModel(3, 3);
-    FieldModel testFieldTwo = new FieldModel(0, 7);
+    private FieldModel testFieldOne = new FieldModel(3, 3);
+    private FieldModel testFieldTwo = new FieldModel(0, 7);
 
     @Test
     void isTaken() {

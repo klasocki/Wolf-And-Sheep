@@ -33,7 +33,6 @@ public class ChessboardView {
                 FieldView currentField = new FieldView(
                         chessboardModel.getField(row, col), this, chessboardModel
                         );
-                chessboardGrid.add(currentField.getViewRepresentation(), col, row);
                 chessboard[row][col] = currentField;
             }
         }

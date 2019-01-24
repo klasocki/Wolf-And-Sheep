@@ -29,11 +29,11 @@ public class ChessboardModel {
     }
 
 
-    public FieldModel getFieldModelSelected() {
+    FieldModel getFieldModelSelected() {
         return fieldModelSelected;
     }
 
-    public void setFieldModelSelected(FieldModel fieldModelSelected) {
+    void setFieldModelSelected(FieldModel fieldModelSelected) {
         this.fieldModelSelected = fieldModelSelected;
     }
 

@@ -10,7 +10,7 @@ public abstract class PieceView {
     private FieldView fieldView;
     private ChessboardView chessboardView;
 
-    public PieceView(PieceModel pieceModel, ChessboardView chessboardView) {
+    PieceView(PieceModel pieceModel, ChessboardView chessboardView) {
         this.pieceModel = pieceModel;
         this.chessboardView = chessboardView;
         Circle viewRepresentation = new Circle();
@@ -28,7 +28,7 @@ public abstract class PieceView {
     }
 
 
-    public void place(FieldModel fieldModel) {
+    void place(FieldModel fieldModel) {
         if (pieceModel.place(fieldModel)) {
             chessboardView.addPiece(this.viewRepresentation, fieldModel.getCol(), fieldModel.getRow());
             this.fieldView = chessboardView.getFieldView(fieldModel);

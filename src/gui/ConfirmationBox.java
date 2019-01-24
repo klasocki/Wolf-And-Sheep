@@ -10,11 +10,11 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-public class ConfirmationBox {
+class ConfirmationBox {
 
-    static boolean answer;
+    private static boolean answer;
 
-    public static boolean display(String title, String message) {
+    static boolean display(String title, String message) {
         Stage window = new Stage();
         window.initModality(Modality.APPLICATION_MODAL);
         window.setTitle(title);

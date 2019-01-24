@@ -1,7 +1,8 @@
+/**
+ * @author Karol Lasocki https://github.com/klasocki
+ * Simple chessboard game, wrriten for learning purposes.
+ */
 /*
-This game is made by Karol Lasocki, 2018. All rights reserved
-It's a computer version of the "WolfModel and SheepModel" chessboard game, featuring a simple GUI
-I create it for learning
 DONE Make it playable
 TODO Refactor!!!!!
 DONE Make the game handle turns
