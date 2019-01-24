@@ -1,11 +1,10 @@
 package board;
 
 import game.Game;
-import pieces.PieceModel;
 
 public class ChessboardModel {
     public final static int size = 8;
-    protected FieldModel[][] chessboard;
+    private FieldModel[][] chessboard;
     private FieldModel fieldModelSelected = null;
     private Game game = new Game();
 
@@ -58,4 +57,7 @@ public class ChessboardModel {
         return game.canUndo();
     }
 
+    public void setSheepMoveUp(boolean sheepMoveUp) {
+        this.game.sheepMoveUp = sheepMoveUp;
+    }
 }

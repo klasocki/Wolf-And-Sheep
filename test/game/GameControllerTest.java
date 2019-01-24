@@ -8,7 +8,7 @@ import pieces.PieceFactory;
 import pieces.PieceModel;
 import pieces.PieceView;
 
-import static org.junit.jupiter.api.Assertions.*;
+import java.util.ArrayList;
 
 class GameControllerTest {
 
@@ -16,9 +16,9 @@ class GameControllerTest {
     void undoLastMove() {
         ChessboardModel chessboardModel = new ChessboardModel();
         ChessboardView chessboardView = new ChessboardView(chessboardModel);
-        GameController gameController = new GameController(chessboardModel, chessboardView);
         PieceFactory pieceFactory = new PieceFactory(chessboardModel, chessboardView);
-        pieceFactory.placePieces(true);
+        GameController gameController = new GameController(chessboardModel, chessboardView,
+                pieceFactory.placePieces(true), true);
         assert !chessboardModel.canUndo();
         FieldModel wolfField = chessboardModel.getField(0, 5);
         FieldModel toMove = chessboardModel.getField(1, 4);
@@ -31,5 +31,27 @@ class GameControllerTest {
         gameController.undoLastMove();
         assert wolf == chessboardModel.getField(0, 5).getPieceModel();
         assert wolf.hasTurnNow();
+    }
+
+    @Test
+    void getSheep() {
+        GameController gameController = GameController.initGame(true);
+        gameController.getSheep().stream().
+                map(a -> a.getFieldModel().getRow()).sorted().forEach(a -> {
+                    assert a == 7;
+        } );
+    }
+
+    @Test
+    void getWolf() {
+        GameController gameController = GameController.initGame(true);
+        assert gameController.getWolf().getFieldModel().getRow() == 0;
+    }
+
+    @Test
+    void somebodyWon() {
+        GameController gameController = GameController.initGame(true);
+        assert !gameController.wolfWon();
+        assert !gameController.sheepWon();
     }
 }
