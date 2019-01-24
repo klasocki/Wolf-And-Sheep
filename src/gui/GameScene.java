@@ -5,23 +5,33 @@ import game.GameOverObserver;
 import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 
+import java.util.Arrays;
+
 public class GameScene implements GameOverObserver {
-    Stage window;
+    private Stage window;
+
+    public GameScene(Stage window) {
+        this.window = window;
+    }
+
     public void display() {
-        window = prepareStage();
+        prepareStage();
         GameController gameController = GameController.initGame(true);
         gameController.addObserver(this);
         GridPane boardView = getChessboardGrid(window, gameController);
         HBox layout = prepareLayout(gameController, boardView);
         window.setScene(new Scene(layout, 820, 620));
         window.show();
+        GuiUtils.centerWindow(window);
     }
 
     private HBox prepareLayout(GameController gameController, GridPane boardView) {
@@ -39,12 +49,8 @@ public class GameScene implements GameOverObserver {
         Button undoButton = new Button("Undo");
         Button restartButton = new Button("Restart");
         Button quitButton = new Button("Back to menu");
-        quitButton.setMinHeight(50);
-        undoButton.minHeightProperty().bind(quitButton.minHeightProperty());
-        undoButton.prefWidthProperty().bind(quitButton.widthProperty());
-        restartButton.minHeightProperty().bind(quitButton.minHeightProperty());
-        restartButton.prefWidthProperty().bind(quitButton.widthProperty());
-
+        Button[] arr = {restartButton, undoButton};
+        GuiUtils.setButtonHeightAndBindSizes(50, Arrays.asList(arr), quitButton);
         undoButton.setOnAction(event -> gameController.undoLastMove());
         restartButton.setOnAction(event -> {
             if (ConfirmationBox.display("Restarting game",
@@ -52,19 +58,25 @@ public class GameScene implements GameOverObserver {
                 restart();
             }
         });
+        quitButton.setOnAction(event -> {
+            if (ConfirmationBox.display("Back to menu",
+                    "Are you sure you want to quit to menu? Game progress will be lost")) {
+                MenuScene menuScene = new MenuScene(window);
+                menuScene.display();
+            }
+        });
 
         rightMenu.getChildren().addAll(undoButton, restartButton, quitButton);
     }
 
-    private Stage prepareStage() {
-        Stage window = new Stage();
+
+    private void prepareStage() {
         window.setTitle("Wolf and Sheep - Chessboard game");
         window.setResizable(false);
         window.setOnCloseRequest(event -> {
             event.consume();
             closeWindows();
         });
-        return window;
     }
 
     private GridPane getChessboardGrid(Stage window, GameController gameController) {

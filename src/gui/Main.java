@@ -23,8 +23,8 @@ public class Main extends Application {
 
     @Override
     public void start(Stage window) {
-        GameScene gameScene = new GameScene();
-        gameScene.display();
+        MenuScene menuScene = new MenuScene(window);
+        menuScene.display();
     }
 
     public static void main(String[] args) {
