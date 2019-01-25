@@ -23,10 +23,6 @@ public abstract class PieceView {
         return viewRepresentation;
     }
 
-    public FieldView getFieldView() {
-        return fieldView;
-    }
-
 
     void place(FieldModel fieldModel) {
         if (pieceModel.place(fieldModel)) {

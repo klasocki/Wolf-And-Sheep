@@ -1,6 +1,7 @@
 package gui;
 
 import javafx.application.Platform;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Cursor;
 import javafx.scene.Scene;
@@ -37,6 +38,7 @@ class MenuScene {
         Label label = new Label("Wolf and Sheep");
         label.setStyle("-fx-font-family: 'Keraleeyam'; -fx-font-size: 43px; -fx-font-style: oblique;");
         VBox layout = new VBox(30);
+        layout.setPadding(new Insets(0,0,30,0));
         layout.setAlignment(Pos.CENTER);
         layout.getChildren().add(label);
         addButtons(layout);

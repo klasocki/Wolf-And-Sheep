@@ -2,6 +2,7 @@ package game;
 
 import board.ChessboardModel;
 import board.ChessboardView;
+import board.FieldController;
 import board.FieldView;
 import javafx.scene.layout.GridPane;
 import pieces.*;
@@ -53,6 +54,9 @@ public class GameController implements PieceMovedObserver{
 
     public void undoLastMove() {
         if (chessboardModel.canUndo()) {
+            FieldController fieldController = new FieldController(chessboardModel, chessboardView);
+            fieldController.unselectField();
+
             Game.Move lastMove = chessboardModel.popMove();
             PieceModel pieceMoved = lastMove.to.getPieceModel();
             FieldView movedTo = chessboardView.getFieldView(lastMove.to);

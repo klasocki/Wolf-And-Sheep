@@ -19,7 +19,7 @@ public class ChessboardView {
     final int size;
     final static Color nonPlayable = Color.valueOf("#B8B8B8");
     final static Color playable = Color.valueOf("#383838");
-    final static Color prompt = Color.valueOf("#16470e");
+    final static Color prompt = Color.valueOf("#6B83DD");
     final static Color selected = Color.valueOf("#908F09");
     public final static Color wolfColor = Color.valueOf("#9C2D2A");
     public final static Color sheepColor = Color.valueOf("#B19868");
