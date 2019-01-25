@@ -4,7 +4,7 @@
  */
 /*
 DONE Make it playable
-TODO Refactor!!!!!
+DONE Refactor!!!!!
 DONE Make the game handle turns
 DONE Add winning messages
 DONE Add undo and other control buttons, and help button

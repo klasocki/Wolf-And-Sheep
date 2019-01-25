@@ -6,11 +6,11 @@ import java.util.List;
 
 //TODO too much logic inside controller, move
 
-class FieldController {
+public class FieldController {
     private ChessboardModel chessboardModel;
     private ChessboardView chessboardView;
 
-    FieldController(ChessboardModel chessboardModel, ChessboardView chessboardView) {
+    public FieldController(ChessboardModel chessboardModel, ChessboardView chessboardView) {
         this.chessboardModel = chessboardModel;
         this.chessboardView = chessboardView;
     }
@@ -29,7 +29,7 @@ class FieldController {
         }
     }
 
-    private void unselectField() {
+    public void unselectField() {
         FieldModel fieldModel = chessboardModel.getFieldModelSelected();
         if (fieldModel == null) return;
         List<FieldModel> moves = fieldModel.getPossibleMoves();
